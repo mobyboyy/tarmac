@@ -221,7 +221,7 @@ impl RobloxApiClient {
     }
     
     /// Upload an model, returning an error if anything goes wrong.
-    pub fn upload_image(
+    pub fn upload_model(
         &mut self,
         data: ModelUploadData,
     ) -> Result<UploadResponse, RobloxApiError> {
