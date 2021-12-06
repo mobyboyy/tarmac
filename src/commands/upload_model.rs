@@ -4,11 +4,11 @@ use fs_err as fs;
 
 use crate::{
     auth_cookie::get_auth_cookie,
-    options::{GlobalOptions, UploadImageOptions},
+    options::{GlobalOptions, UploadModelOptions},
     roblox_web_api::{ImageUploadData, RobloxApiClient},
 };
 
-pub fn upload_image(global: GlobalOptions, options: UploadModelOptions) {
+pub fn upload_model(global: GlobalOptions, options: UploadModelOptions) {
     let auth = global
         .auth
         .clone()
@@ -19,7 +19,7 @@ pub fn upload_image(global: GlobalOptions, options: UploadModelOptions) {
 
     let mut client = RobloxApiClient::new(Some(auth));
 
-    let upload_data = ImageUploadData {
+    let upload_data = ModelUploadData {
         image_data: Cow::Owned(model_data),
         name: &options.name,
         description: &options.description,
