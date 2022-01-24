@@ -20,6 +20,7 @@ pub struct UploadInfo {
     pub name: String,
     pub contents: Vec<u8>,
     pub hash: String,
+    pub type: u8
 }
 
 pub struct RobloxSyncBackend<'a> {
@@ -39,7 +40,8 @@ impl<'a> RobloxSyncBackend<'a> {
 impl<'a> SyncBackend for RobloxSyncBackend<'a> {
     fn upload(&mut self, data: UploadInfo) -> Result<UploadResponse, Error> {
         log::info!("Uploading {} to Roblox", &data.name);
-
+        
+        if (data.type == 13) {
         let result = self
             .api_client
             .upload_image_with_moderation_retry(ImageUploadData {
@@ -68,6 +70,37 @@ impl<'a> SyncBackend for RobloxSyncBackend<'a> {
             }) => Err(Error::RateLimited),
 
             Err(err) => Err(err.into()),
+        }
+        } else {
+        let result = self
+            .api_client
+            .upload_model_with_moderation_retry(ImageUploadData {
+                image_data: Cow::Owned(data.contents),
+                name: &data.name,
+                description: "Uploaded by Tarmac.",
+                group_id: self.upload_to_group_id,
+            });
+
+        match result {
+            Ok(response) => {
+                log::info!(
+                    "Uploaded {} to ID {}",
+                    &data.name,
+                    response.backing_asset_id
+                );
+
+                Ok(UploadResponse {
+                    id: response.backing_asset_id,
+                })
+            }
+
+            Err(RobloxApiError::ResponseError {
+                status: StatusCode::TOO_MANY_REQUESTS,
+                ..
+            }) => Err(Error::RateLimited),
+
+            Err(err) => Err(err.into()),
+        }
         }
     }
 }
