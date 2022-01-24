@@ -292,7 +292,7 @@ impl SyncSession {
         let mut compatible_input_groups = BTreeMap::new();
 
         for (input_name, input) in &self.inputs {
-            if !is_image_asset(&input.path) {
+            if !is_image_asset(&input.path) && !is_model_asset(&input.path) {
                 log::warn!(
                     "Asset '{}' is not recognized by Tarmac.",
                     input.path.display()
