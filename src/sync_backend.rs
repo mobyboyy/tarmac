@@ -241,11 +241,12 @@ mod test {
             }
         }
 
-        fn any_upload_info() -> UploadInfo {
+        fn any_upload_info(asset_type: u8) -> UploadInfo {
             UploadInfo {
                 name: "foo".to_owned(),
                 contents: Vec::new(),
                 hash: "hash".to_owned(),
+                asset_type: asset_type || 13
             }
         }
 
