@@ -246,7 +246,7 @@ mod test {
                 name: "foo".to_owned(),
                 contents: Vec::new(),
                 hash: "hash".to_owned(),
-                asset_type: asset_type || 13
+                asset_type: asset_type
             }
         }
 
