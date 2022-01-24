@@ -291,7 +291,7 @@ mod test {
             ]);
             let mut backend = RetryBackend::new(inner, 5, retry_duration());
 
-            let upload_result = backend.upload(any_upload_info()).unwrap();
+            let upload_result = backend.upload(any_upload_info(13)).unwrap();
 
             assert_eq!(counter, 3);
             assert_eq!(upload_result, success);
@@ -308,7 +308,7 @@ mod test {
             ]);
             let mut backend = RetryBackend::new(inner, 2, retry_duration());
 
-            let upload_result = backend.upload(any_upload_info()).unwrap_err();
+            let upload_result = backend.upload(any_upload_info(13)).unwrap_err();
 
             assert_eq!(counter, 3);
             assert!(match upload_result {
