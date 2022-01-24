@@ -57,6 +57,20 @@ pub struct UploadImageOptions {
 }
 
 #[derive(Debug, StructOpt)]
+pub struct UploadModelOptions {
+    /// The path to the image to upload.
+    pub path: PathBuf,
+
+    /// The name to give to the resulting Decal asset.
+    #[structopt(long)]
+    pub name: String,
+
+    /// The description to give to the resulting Decal asset.
+    #[structopt(long, default_value = "Uploaded by Tarmac.")]
+    pub description: String,
+}
+
+#[derive(Debug, StructOpt)]
 pub struct SyncOptions {
     /// Where Tarmac should sync the project.
     ///
