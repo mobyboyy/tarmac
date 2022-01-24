@@ -18,6 +18,14 @@ pub struct ImageUploadData<'a> {
     pub group_id: Option<u64>,
 }
 
+#[derive(Debug, Clone)]
+pub struct ModelUploadData<'a> {
+    pub model_data: Cow<'a, [u8]>,
+    pub name: &'a str,
+    pub description: &'a str,
+    pub group_id: Option<u64>,
+}
+
 #[derive(Debug, Serialize, Deserialize)]
 #[serde(rename_all = "PascalCase")]
 pub struct UploadResponse {
@@ -225,7 +233,7 @@ impl RobloxApiClient {
         &mut self,
         data: ModelUploadData,
     ) -> Result<UploadResponse, RobloxApiError> {
-        let response = self.upload_image_raw(&data)?;
+        let response = self.upload_model_raw(&data)?;
 
         // Some other errors will be reported inside the response, even
         // though we received a successful HTTP response.
@@ -246,7 +254,7 @@ impl RobloxApiClient {
     
     /// Upload an model, returning the raw response returned by the endpoint,
     /// which may have further failures to handle.
-    fn upload_image_raw(
+    fn upload_model_raw(
         &mut self,
         data: &ModelUploadData,
     ) -> Result<RawUploadResponse, RobloxApiError> {
