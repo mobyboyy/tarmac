@@ -451,6 +451,7 @@ impl SyncSession {
             name: "spritesheet".to_owned(),
             contents: encoded_image,
             hash: hash.clone(),
+            asset_type: 13
         };
 
         let id = backend.upload(upload_data)?.id;
@@ -477,6 +478,7 @@ impl SyncSession {
             name: input.human_name(),
             contents: input.contents.clone(),
             hash: input.hash.clone(),
+            asset_type: 13
         };
 
         let id = if let Some(input_manifest) = self.original_manifest.inputs.get(&input_name) {
