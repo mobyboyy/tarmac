@@ -694,6 +694,16 @@ fn is_image_asset(path: &Path) -> bool {
     }
 }
 
+fn is_model_asset(path: &Path) -> bool {
+    match path.extension().and_then(|ext| ext.to_str()) {
+        // TODO: Expand the definition of images?
+        Some("rbxm") | Some("rbxmx") => true,
+
+        _ => false,
+    }
+}
+
+
 fn generate_asset_hash(content: &[u8]) -> String {
     format!("{}", blake3::hash(content).to_hex())
 }
