@@ -74,8 +74,8 @@ impl<'a> SyncBackend for RobloxSyncBackend<'a> {
         } else {
         let result = self
             .api_client
-            .upload_model_with_moderation_retry(ImageUploadData {
-                image_data: Cow::Owned(data.contents),
+            .upload_model_with_moderation_retry(ModelUploadData {
+                model_data: Cow::Owned(data.contents),
                 name: &data.name,
                 description: "Uploaded by Tarmac.",
                 group_id: self.upload_to_group_id,
