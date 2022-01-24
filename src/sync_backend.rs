@@ -20,7 +20,7 @@ pub struct UploadInfo {
     pub name: String,
     pub contents: Vec<u8>,
     pub hash: String,
-    pub type: u8
+    pub asset_type: u8
 }
 
 pub struct RobloxSyncBackend<'a> {
@@ -41,7 +41,7 @@ impl<'a> SyncBackend for RobloxSyncBackend<'a> {
     fn upload(&mut self, data: UploadInfo) -> Result<UploadResponse, Error> {
         log::info!("Uploading {} to Roblox", &data.name);
         
-        if (data.type == 13) {
+        if data.asset_type == 13 {
         let result = self
             .api_client
             .upload_image_with_moderation_retry(ImageUploadData {
