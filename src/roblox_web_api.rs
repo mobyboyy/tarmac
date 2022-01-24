@@ -268,7 +268,7 @@ impl RobloxApiClient {
             Ok(client
                 .post(&url)
                 .query(&[("name", data.name), ("description", data.description)])
-                .body(data.image_data.clone().into_owned())
+                .body(data.model_data.clone().into_owned())
                 .build()?)
         })?;
 
