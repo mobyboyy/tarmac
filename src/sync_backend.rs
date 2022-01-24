@@ -4,7 +4,7 @@ use fs_err as fs;
 use reqwest::StatusCode;
 use thiserror::Error;
 
-use crate::roblox_web_api::{ImageUploadData, RobloxApiClient, RobloxApiError};
+use crate::roblox_web_api::{ImageUploadData, ModelUploadData, RobloxApiClient, RobloxApiError};
 
 pub trait SyncBackend {
     fn upload(&mut self, data: UploadInfo) -> Result<UploadResponse, Error>;
