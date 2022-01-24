@@ -5,7 +5,7 @@ use fs_err as fs;
 use crate::{
     auth_cookie::get_auth_cookie,
     options::{GlobalOptions, UploadModelOptions},
-    roblox_web_api::{ImageUploadData, RobloxApiClient},
+    roblox_web_api::{ModelUploadData, RobloxApiClient},
 };
 
 pub fn upload_model(global: GlobalOptions, options: UploadModelOptions) {
