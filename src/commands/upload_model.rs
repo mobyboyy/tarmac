@@ -20,7 +20,7 @@ pub fn upload_model(global: GlobalOptions, options: UploadModelOptions) {
     let mut client = RobloxApiClient::new(Some(auth));
 
     let upload_data = ModelUploadData {
-        image_data: Cow::Owned(model_data),
+        model_data: Cow::Owned(model_data),
         name: &options.name,
         description: &options.description,
         group_id: None,
