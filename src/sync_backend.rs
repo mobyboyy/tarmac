@@ -260,7 +260,7 @@ mod test {
             let mut backend =
                 RetryBackend::new(CountUploads::new(&mut counter), 0, retry_duration());
 
-            backend.upload(any_upload_info());
+            backend.upload(any_upload_info(13));
 
             assert_eq!(counter, 1);
         }
@@ -275,7 +275,7 @@ mod test {
             ]);
             let mut backend = RetryBackend::new(inner, 5, retry_duration());
 
-            backend.upload(any_upload_info());
+            backend.upload(any_upload_info(13));
 
             assert_eq!(counter, 3);
         }
