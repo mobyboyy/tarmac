@@ -30,6 +30,6 @@ pub fn upload_model(global: GlobalOptions, options: UploadModelOptions) {
         .upload_model(upload_data)
         .expect("Roblox API request failed");
 
-    eprintln!("Image uploaded successfully!");
+    println!("Image uploaded successfully!");
     println!("{}", response.backing_asset_id);
 }
